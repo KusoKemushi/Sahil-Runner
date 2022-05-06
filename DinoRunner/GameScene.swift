@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cactusNode: SKNode!
     var dinosaurNode: SKNode!
     var birdNode: SKNode!
+    //random Change
     
     //score
     var scoreNode: SKLabelNode!
