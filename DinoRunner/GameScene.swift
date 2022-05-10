@@ -4,7 +4,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+    //HELP
     //nodes
     var gameNode: SKNode!
     var groundNode: SKNode!
