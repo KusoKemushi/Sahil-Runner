@@ -69,8 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //background elements
         backgroundNode = SKNode()
         backgroundNode.zPosition = background
-        createMoon()
-        createClouds()
+       
         
         //dinosaur
         dinosaurNode = SKNode()
@@ -248,11 +247,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let screenWidth = self.frame.size.width
         
         //ground texture
-        let groundTexture = SKTexture(imageNamed: "dino.assets/landscape/ground")
+        let groundTexture = SKTexture(imageNamed: "sahil.assets/landscape/ground")
         groundTexture.filteringMode = .nearest
         
-        let homeButtonPadding = 50.0 as CGFloat
-        groundHeight = groundTexture.size().height + homeButtonPadding
+        groundHeight = groundTexture.size().height * 0.5
         
         //ground actions
         let moveGroundLeft = SKAction.moveBy(x: -groundTexture.size().width,
@@ -265,7 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for i in 0 ..< numberOfGroundNodes {
             let node = SKSpriteNode(texture: groundTexture)
-            node.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+            node.anchorPoint = CGPoint(x: 0.0, y: 0.5)
             node.position = CGPoint(x: CGFloat(i) * groundTexture.size().width, y: groundHeight!)
             groundNode.addChild(node)
             node.run(SKAction.repeatForever(groundLoop))
@@ -282,78 +280,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         groundContactNode.physicsBody?.categoryBitMask = groundCategory
         
         groundNode.addChild(groundContactNode)
-    }
-    
-    func createMoon() {
-        //texture
-        let moonTexture = SKTexture(imageNamed: "dino.assets/landscape/moon")
-        let moonScale = 3.0 as CGFloat
-        moonTexture.filteringMode = .nearest
-        
-        //moon sprite
-        let moonSprite = SKSpriteNode(texture: moonTexture)
-        moonSprite.setScale(moonScale)
-        //add to scene
-        backgroundNode.addChild(moonSprite)
-        
-        //animate the moon
-        animateMoon(sprite: moonSprite, textureWidth: moonTexture.size().width * moonScale)
-    }
-    
-    func animateMoon(sprite: SKSpriteNode, textureWidth: CGFloat) {
-        let screenWidth = self.frame.size.width
-        let screenHeight = self.frame.size.height
-        
-        let distanceOffscreen = 50.0 as CGFloat // want to start the moon offscreen
-        let distanceBelowTop = 150 as CGFloat
-        
-        //moon actions
-        let moveMoon = SKAction.moveBy(x: -screenWidth - textureWidth - distanceOffscreen,
-                                       y: 0.0, duration: TimeInterval(screenWidth / moonSpeed))
-        let resetMoon = SKAction.moveBy(x: screenWidth + distanceOffscreen, y: 0.0, duration: 0)
-        let moonLoop = SKAction.sequence([moveMoon, resetMoon])
-        
-        sprite.position = CGPoint(x: screenWidth + distanceOffscreen, y: screenHeight - distanceBelowTop)
-        sprite.run(SKAction.repeatForever(moonLoop))
-    }
-    
-    func createClouds() {
-        //texture
-        let cloudTexture = SKTexture(imageNamed: "dino.assets/landscape/cloud")
-        let cloudScale = 3.0 as CGFloat
-        cloudTexture.filteringMode = .nearest
-        
-        //clouds
-        let numClouds = 3
-        for i in 0 ..< numClouds {
-            //create sprite
-            let cloudSprite = SKSpriteNode(texture: cloudTexture)
-            cloudSprite.setScale(cloudScale)
-            //add to scene
-            backgroundNode.addChild(cloudSprite)
-            
-            //animate the cloud
-            animateCloud(cloudSprite, cloudIndex: i, textureWidth: cloudTexture.size().width * cloudScale)
-        }
-    }
-    
-    func animateCloud(_ sprite: SKSpriteNode, cloudIndex i: Int, textureWidth: CGFloat) {
-        let screenWidth = self.frame.size.width
-        let screenHeight = self.frame.size.height
-        
-        let cloudOffscreenDistance = (screenWidth / 3.0) * CGFloat(i) + 100 as CGFloat
-        let cloudYPadding = 50 as CGFloat
-        let cloudYPosition = screenHeight - (CGFloat(i) * cloudYPadding) - 200
-        
-        let distanceToMove = screenWidth + cloudOffscreenDistance + textureWidth
-        
-        //actions
-        let moveCloud = SKAction.moveBy(x: -distanceToMove, y: 0.0, duration: TimeInterval(distanceToMove / cloudSpeed))
-        let resetCloud = SKAction.moveBy(x: distanceToMove, y: 0.0, duration: 0.0)
-        let cloudLoop = SKAction.sequence([moveCloud, resetCloud])
-        
-        sprite.position = CGPoint(x: screenWidth + cloudOffscreenDistance, y: cloudYPosition)
-        sprite.run(SKAction.repeatForever(cloudLoop))
     }
     
     func createDinosaur() {

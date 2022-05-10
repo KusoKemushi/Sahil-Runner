@@ -15,7 +15,6 @@
 		73E60463210EA3EF002E52CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E60461210EA3EF002E52CB /* Main.storyboard */; };
 		73E60465210EA3F0002E52CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E60464210EA3F0002E52CB /* Assets.xcassets */; };
 		73E60468210EA3F0002E52CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E60466210EA3F0002E52CB /* LaunchScreen.storyboard */; };
-		73E60470210EAB9E002E52CB /* dino.assets in Resources */ = {isa = PBXBuildFile; fileRef = 73E6046F210EAB9E002E52CB /* dino.assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		73E60464210EA3F0002E52CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73E60467210EA3F0002E52CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73E60469210EA3F0002E52CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73E6046F210EAB9E002E52CB /* dino.assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dino.assets; path = ../../dino.assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +67,6 @@
 				73E60461210EA3EF002E52CB /* Main.storyboard */,
 				73E60464210EA3F0002E52CB /* Assets.xcassets */,
 				3F9189B32821833000A58C55 /* sahil.assets */,
-				73E6046F210EAB9E002E52CB /* dino.assets */,
 				73E60466210EA3F0002E52CB /* LaunchScreen.storyboard */,
 				73E60469210EA3F0002E52CB /* Info.plist */,
 			);
@@ -136,7 +133,6 @@
 			files = (
 				73E60463210EA3EF002E52CB /* Main.storyboard in Resources */,
 				73E6045A210EA3EF002E52CB /* GameScene.sks in Resources */,
-				73E60470210EAB9E002E52CB /* dino.assets in Resources */,
 				73E60465210EA3F0002E52CB /* Assets.xcassets in Resources */,
 				3F9189B42821833100A58C55 /* sahil.assets in Resources */,
 				73E60468210EA3F0002E52CB /* LaunchScreen.storyboard in Resources */,
