@@ -19,10 +19,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var resetInstructions: SKLabelNode!
     var score = 0 as Int
     
-    //sound effects
-    let jumpSound = SKAction.playSoundFileNamed("dino.assets/sounds/jump", waitForCompletion: false)
-    let dieSound = SKAction.playSoundFileNamed("dino.assets/sounds/die", waitForCompletion: false)
-    
     //sprites
     var dinoSprite: SKSpriteNode!
     
@@ -128,7 +124,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let groundPosition = dinoYPosition {
                 if dinoSprite.position.y <= groundPosition && gameNode.speed > 0 {
                     dinoSprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: dinoHopForce))
-                    run(jumpSound)
                 }
             }
         }
@@ -162,7 +157,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         if(hitCactus(contact) || hitBird(contact)){
-            run(dieSound)
             
             resetInstructions.position = CGPoint(x: 1000, y: self.frame.midY)
             gameOver()
@@ -380,47 +374,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.position = CGPoint(x: distanceToMove, y: getGroundHeight() + (texture.size().height * cactusScale))
         sprite.run(moveAndRemove)
     }
-    /*
-    func spawnBird() {
-        //textures
-        let birdTexture1 = SKTexture(imageNamed: "dino.assets/dinosaurs/flyer1")
-        let birdTexture2 = SKTexture(imageNamed: "dino.assets/dinosaurs/flyer2")
-        let birdScale = 3.0 as CGFloat
-        birdTexture1.filteringMode = .nearest
-        birdTexture2.filteringMode = .nearest
-        
-        //animation
-        let screenWidth = self.frame.size.width
-        let distanceOffscreen = 50.0 as CGFloat
-        let distanceToMove = screenWidth + distanceOffscreen + birdTexture1.size().width * birdScale
-        
-        let flapAnimation = SKAction.animate(with: [birdTexture1, birdTexture2], timePerFrame: 0.5)
-        let moveBird = SKAction.moveBy(x: -distanceToMove, y: 0.0, duration: TimeInterval(screenWidth / groundSpeed))
-        let removeBird = SKAction.removeFromParent()
-        let moveAndRemove = SKAction.sequence([moveBird, removeBird])
-        
-        //sprite
-        let birdSprite = SKSpriteNode()
-        birdSprite.size = birdTexture1.size()
-        birdSprite.setScale(birdScale)
-        
-        //physics
-        let birdContact = CGSize(width: birdTexture1.size().width * birdScale,
-                                 height: birdTexture1.size().height * birdScale)
-        birdSprite.physicsBody = SKPhysicsBody(rectangleOf: birdContact)
-        birdSprite.physicsBody?.isDynamic = false
-        birdSprite.physicsBody?.mass = 1.0
-        birdSprite.physicsBody?.categoryBitMask = birdCategory
-        birdSprite.physicsBody?.contactTestBitMask = dinoCategory
-        
-        birdSprite.position = CGPoint(x: distanceToMove,
-                                      y: getGroundHeight() + birdTexture1.size().height * birdScale + 20)
-        birdSprite.run(SKAction.group([moveAndRemove, SKAction.repeatForever(flapAnimation)]))
-        
-        //add to scene
-        birdNode.addChild(birdSprite)
-    }
-    */
     
     func getGroundHeight() -> CGFloat {
         if let gHeight = groundHeight {
